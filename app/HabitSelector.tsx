@@ -49,10 +49,10 @@ const HabitSelector = () => {
     };
 
     return (
-        <GestureHandlerRootView>
+        <GestureHandlerRootView style={{...StyleSheet.absoluteFillObject}}>
             <StatusBar style="auto" backgroundColor={Colors[color ?? 'light'].background} translucent/>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 80 : 0}>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "height" : "height"} keyboardVerticalOffset={0}>
                     <ThemedView style={styles.container}>
                         <ThemedText type='title' style={{paddingTop: 20, paddingBottom: 20, marginBottom: 20, borderBottomWidth: 2, borderColor: Colors.primary}}>{lan.habitselector.welcome}</ThemedText>
                         <FlatList
@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20
+        padding: 20,
+        paddingTop: 60
     },
     input: {
         borderWidth: 1,

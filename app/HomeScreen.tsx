@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
-import { Pressable, StyleSheet, View, useColorScheme } from 'react-native';
+import { Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { Tasks } from '@/components/home/Tasks';
 import { Phrase } from '@/components/home/Phrase';
@@ -26,22 +26,18 @@ const HomeScreen = () => {
         habits
     } = useGetLocalStorage();
 
-    const deleteLocalStorage = async () => {
-        try {
-            await AsyncStorage.clear();
-            setReload(!reload);
-        } catch (e) {
-            console.error('Error deleting local storage', e);
-        }
-    };
+    // const deleteLocalStorage = async () => {
+    //     try {
+    //         await AsyncStorage.clear();
+    //         setReload(!reload);
+    //     } catch (e) {
+    //         console.error('Error deleting local storage', e);
+    //     }
+    // };
     
     return (
-        <GestureHandlerRootView>
-            <StatusBar style="auto" backgroundColor={Colors[color ?? 'light'].background} translucent/>
-
-            {/* <Pressable onPress={deleteLocalStorage}>
-                <ThemedText>Eliminar datos locales</ThemedText>
-            </Pressable> */}
+        <GestureHandlerRootView style={{...StyleSheet.absoluteFillObject}}>
+            <StatusBar style="auto" backgroundColor={Colors[color ?? 'light'].background}/>
 
             <ScrollView
                 keyboardShouldPersistTaps='handled'
@@ -50,6 +46,7 @@ const HomeScreen = () => {
             >
         
                 <ThemedText type='title' style={{...styles.title}}>{lan.home.welcome}</ThemedText>
+                {/* <Pressable onPress={deleteLocalStorage}><ThemedText>Clear local storage</ThemedText></Pressable> */}
                 <View>
                     <Tasks
                         habits={habits}
@@ -74,8 +71,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
     title: {
-        marginTop: 20,
-        marginBottom: 40
+        marginVertical: 40
     }
 
 })
