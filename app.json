@@ -2,7 +2,7 @@
   "expo": {
     "name": "HabitDiary",
     "slug": "HabitDiary",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.palacios.habitdiary"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +33,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1aabf7db-f9ca-483c-b030-367cbc7d1876"
+      }
     }
   }
 }
