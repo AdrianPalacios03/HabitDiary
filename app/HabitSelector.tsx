@@ -3,7 +3,7 @@ import { ThemedView } from '@/components/ThemedView'
 import { Colors } from '@/constants/Colors'
 import { useLanguage } from '@/hooks/useLanguage'
 import { StatusBar } from 'expo-status-bar'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, useColorScheme, Pressable, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, Platform, Alert } from 'react-native';
 import { FlatList, GestureHandlerRootView, TextInput } from 'react-native-gesture-handler'
 import { IconPlus } from '@tabler/icons-react-native';
@@ -11,11 +11,13 @@ import Habit from '@/components/habitselector/Habit'
 import ReadyButton from '@/components/habitselector/ReadyButton'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router'
+import useColorStore from '@/store'
 
 const HabitSelector = () => {
     
     const { lan } = useLanguage();
-    const color = useColorScheme();
+    const colorScheme = useColorScheme();
+    const color = useColorStore((state) => state.color);
 
     const [ habitValue, setHabitValue ] = useState('');
     const [ habitList, setHabitList ] = useState<{name: string}[]>([]);
@@ -42,19 +44,33 @@ const HabitSelector = () => {
     const saveHabitList = async () => {
         try {
             await AsyncStorage.setItem('habitList', JSON.stringify(habitList));
-            router.push('/HomeScreen');
+            router.replace('/HomeScreen');
         } catch (e) {
             console.error('Error saving habit list', e);
         }
     };
 
+    const loadHabitList = async () => {
+        try {
+            const habitList = await AsyncStorage.getItem('habitList');
+            if (habitList) setHabitList(JSON.parse(habitList));
+        } catch (e) {
+            console.error('Error loading habit list', e);
+        }
+    }
+
+    useEffect(() => {
+      loadHabitList();
+    }, [])
+    
+
     return (
         <GestureHandlerRootView style={{...StyleSheet.absoluteFillObject}}>
-            <StatusBar style="auto" backgroundColor={Colors[color ?? 'light'].background} translucent/>
+            <StatusBar style="auto" backgroundColor={Colors[colorScheme ?? 'light'].background} translucent/>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "height" : "height"} keyboardVerticalOffset={0}>
                     <ThemedView style={styles.container}>
-                        <ThemedText type='title' style={{paddingTop: 20, paddingBottom: 20, marginBottom: 20, borderBottomWidth: 2, borderColor: Colors.primary}}>{lan.habitselector.welcome}</ThemedText>
+                        <ThemedText type='title' style={{paddingTop: 20, paddingBottom: 20, marginBottom: 20, borderBottomWidth: 2, borderColor: color}}>{lan.habitselector.welcome}</ThemedText>
                         <FlatList
                             data={habitList}
                             renderItem={({ item }) => (
@@ -64,23 +80,23 @@ const HabitSelector = () => {
                                 />
                             )}
                             keyExtractor={(item) => item.name}
-                            ListFooterComponent={habitList.length > 0 ? <ReadyButton onPress={saveHabitList}/> : <></>}
+                            ListFooterComponent={habitList.length > 0 ? <ReadyButton color={color} onPress={saveHabitList}/> : <></>}
                             showsVerticalScrollIndicator={false}
                         />
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <TextInput
                                 placeholder={lan.habitselector.placeholder}
-                                style={{...styles.input, borderColor: Colors[color ?? 'light'].grey,
-                                color: Colors[color ?? 'light'].grey
+                                style={{...styles.input, borderColor: Colors[colorScheme ?? 'light'].grey,
+                                color: Colors[colorScheme ?? 'light'].grey
                                 }}
                                 value={habitValue}
                                 onChangeText={setHabitValue}
-                                placeholderTextColor={Colors[color ?? 'light'].grey}
+                                placeholderTextColor={Colors[colorScheme ?? 'light'].grey}
                                 onSubmitEditing={onAddPress}
                             />
                             <Pressable
                                 onPress={onAddPress}
-                                style={styles.button}
+                                style={{...styles.button, backgroundColor: color}}
                             >
                                 <IconPlus size={30} color="white"/>
                             </Pressable>
@@ -111,7 +127,6 @@ const styles = StyleSheet.create({
         flex: 1
     },
     button: {
-        backgroundColor: Colors.primary,
         padding: 10,
         borderRadius: 10,
         margin: 10

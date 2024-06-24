@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TextInput, View, useColorScheme } from 'react-native'
+import React from 'react'
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View, useColorScheme } from 'react-native'
 import useTask from '@/hooks/home/useTasks';
 import { dateToString } from '@/util/home/dateToString';
 import { SaveButton } from '@/components/home/SaveButton';
@@ -13,14 +13,15 @@ import { checkSameDay } from '@/util/home/checkSameDay';
 interface Props {
     habits: any[];
     isLoading: boolean;
+    color: string;
 }
 
-export const Tasks = ({habits, isLoading}: Props) => {
+export const Tasks = ({habits, isLoading, color}: Props) => {
 
     const { lan, languageCode } = useLanguage();
-    const color = useColorScheme();
-    const colorText = Colors[color ?? 'light'].text
-    const colorGrey = Colors[color ?? 'light'].grey
+    const colorScheme = useColorScheme();
+    const colorText = Colors[colorScheme ?? 'light'].text
+    const colorGrey = Colors[colorScheme ?? 'light'].grey
 
     const { taskDate, setTaskDate, checkedFields, onCheckChange, onSaveClick, isSaving } = useTask()
 
@@ -85,6 +86,7 @@ export const Tasks = ({habits, isLoading}: Props) => {
                                 onChange={() => {onCheckChange(habit.name)}}
                                 key={habit.name}
                                 defChecked={checkedFields[habit.name]}
+                                color={color}
                             />
                         })
 
@@ -104,6 +106,7 @@ export const Tasks = ({habits, isLoading}: Props) => {
                         onClick={onSaveClick} 
                         isSaving={isSaving} 
                         isSaveButton
+                        bgColor={color}
                     />
                 </View>
             </View>

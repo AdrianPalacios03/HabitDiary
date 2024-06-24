@@ -1,4 +1,3 @@
-import { Colors } from '@/constants/Colors';
 import { useLanguage } from '@/hooks/useLanguage';
 import { IconCircleDashedCheck, IconDeviceFloppy, IconRocket } from '@tabler/icons-react-native';
 import React, { useState, useRef } from 'react';
@@ -8,10 +7,11 @@ interface Props {
   title?: string,
   onClick: () => void,
   isSaving: boolean,
-  isSaveButton?: boolean
+  bgColor: string
+  isSaveButton?: boolean,
 }
 
-export const SaveButton = ({ title, onClick, isSaving, isSaveButton }: Props) => {
+export const SaveButton = ({ title, onClick, isSaving, isSaveButton, bgColor }: Props) => {
   const { lan } = useLanguage();
   const [isPressed, setIsPressed] = useState(false);
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -36,7 +36,7 @@ export const SaveButton = ({ title, onClick, isSaving, isSaveButton }: Props) =>
 
   const backgroundColor = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [Colors.primary, '#00b55e']
+    outputRange: [bgColor, '#00b55e']
   });
 
   return (

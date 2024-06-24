@@ -12,7 +12,8 @@ export const useGetLocalStorage = () => {
     const [labels, setlabels] = useState<any[]>([]);
     const [tableData, setTableData] = useState<any[]>([]);
     const { languageTag } = useLanguage();
-    const [habits, setHabits] = useState([])
+    const [habits, setHabits] = useState([]);
+    const [name, setName] = useState<string | null>(null);
 
 
     const getLastDaysData = async (fechas: any[]) => {
@@ -60,6 +61,7 @@ export const useGetLocalStorage = () => {
     useEffect(() => {
       loadChart();
       loadHabitList();
+      loadName();
     }, []);
 
     const loadHabitList = async () => {
@@ -73,13 +75,23 @@ export const useGetLocalStorage = () => {
         setIsTasksLoading(false);
     }
 
+    const loadName = async () => {
+        try {
+            const name = await AsyncStorage.getItem('name');
+            setName(name);
+        } catch (e) {
+            console.error('Error loading name', e);
+        }
+    }
+
     return {
         isChartLoading,
         isTasksLoading,
         labels,
         tableData,
         loadChart,
-        habits
+        habits,
+        name
     }
     
 }

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Dimensions, StyleSheet, View, useColorScheme, Pressable, ActivityIndicator } from 'react-native';
-import { getDayInfo } from '@/database/getDayInfo'
-import capitalize from '@/util/home/capitalize'
 import { LineChart } from 'react-native-chart-kit'
-import { shortDayName } from '@/util/home/shortDayName'
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '../ThemedText';
 import { IconReload } from '@tabler/icons-react-native';
 import { useLanguage } from '@/hooks/useLanguage';
+import useColorStore from '@/store';
 
 
 interface Props {
@@ -15,22 +13,24 @@ interface Props {
     labels: any[];
     tableData: any[];
     loadChart: () => void;
+    color: string;
 }
 
 export const WeekChart = ({
     isLoading,
     labels,
     tableData,
-    loadChart
+    loadChart,
+    color
 }: Props) => {
 
     const { lan } = useLanguage();
-    const color = useColorScheme();
+    const colorScheme = useColorScheme();
 
 
       if (isLoading) return (
         <View style={{height: 240, justifyContent: 'center', alignItems: 'center'}}>
-            <ActivityIndicator color={Colors.primary} size="large"/>
+            <ActivityIndicator color={color} size="large"/>
         </View>
     );
 
@@ -41,7 +41,7 @@ export const WeekChart = ({
                     {lan.home.chartHeader}
                 </ThemedText>
                 <Pressable onPress={loadChart}>
-                    <IconReload size={30} color={Colors[color ?? 'light'].text}/>
+                    <IconReload size={30} color={Colors[colorScheme ?? 'light'].text}/>
                 </Pressable>
             </View>
             <View style={styles.chartContainer}>
@@ -61,8 +61,8 @@ export const WeekChart = ({
                         backgroundGradientFromOpacity: 0,
                         backgroundGradientToOpacity: 0,
                         decimalPlaces: 0, 
-                        color: () => Colors.primary,
-                        labelColor: () => Colors[color ?? 'light'].text,
+                        color: () => color,
+                        labelColor: () => Colors[colorScheme ?? 'light'].text,
                         propsForDots: {
                             r: "4"
                         },

@@ -6,10 +6,17 @@ import { ActivityIndicator, Alert, StyleSheet, useColorScheme } from 'react-nati
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useLanguage } from '@/hooks/useLanguage'
+import useColorStore from '@/store'
 
 const LoadingScreen = () => {
-    const color = useColorScheme();
+    const colorScheme = useColorScheme();
     const { lan } = useLanguage();
+    const { color, setColor } = useColorStore((state) => state);
+
+    const getColors = async () => {
+        const color = await AsyncStorage.getItem('primary-color') || Colors.primary;
+        setColor(color);
+    };
 
     const loadHabitList = async () => {
         try {
@@ -17,10 +24,10 @@ const LoadingScreen = () => {
             const habits = habitListString ? JSON.parse(habitListString) : [];
 
             if (habits.length === 0) {
-                router.push('/HabitSelector');
+                router.replace('/HabitSelector');
                 return;
             } else {
-                router.push('/HomeScreen');
+                router.replace('/HomeScreen');
             }
         } catch (e) {
             Alert.alert('Error', lan.loading.restart);
@@ -30,13 +37,14 @@ const LoadingScreen = () => {
 
     useEffect(() => {
         loadHabitList();
+        getColors();
     }, []);
 
     return (
         <>
-            <StatusBar style="auto" backgroundColor={Colors[color ?? 'light'].background} />
+            <StatusBar style="auto" backgroundColor={Colors[colorScheme ?? 'light'].background} />
             <ThemedView style={styles.container}>
-                <ActivityIndicator size="large" color={Colors.primary} />
+                <ActivityIndicator size="large" color={color} />
             </ThemedView>
         </>
     )

@@ -1,7 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, useColorScheme } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { getRandomQuote } from '@/util/home/getRandomQuote';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useLanguage } from '@/hooks/useLanguage';
 import { ThemedText } from '../ThemedText';
 

@@ -25,5 +25,16 @@ export const es = {
         "saved": "Guardado",
         "placeholder": "¿En qué pensaste hoy?",
         "chartHeader": "Actividades realizadas a lo largo de la semana",
+        "notes": "Notas",
+        "progress": "Progreso",
+    },
+    "settings": {
+        "back": "Atrás",
+        "title": "Ajustes",
+        "name": "¿Cuál es tu nombre?",
+        "color": "Color principal",
+        "error": "No se pudo guardar el nombre",
+        "saved": "Tu nombre ha sido guardado y aparecerá la próxima vez que abras la app.",
+        "habitSelector": "Elige los hábitos a seguir"
     }
 }

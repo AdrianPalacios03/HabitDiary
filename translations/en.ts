@@ -24,6 +24,17 @@ export const en = {
         "save": "Save",
         "saved": "Saved",
         "placeholder": "What did you think about today?",
-        "chartHeader": "Activities carried out throughout the week"
+        "chartHeader": "Activities carried out throughout the week",
+        "notes": "Notes",
+        "progress": "Progress",
+    },
+    "settings": {
+        "back": "Back",
+        "title": "Settings",
+        "name": "What's your name?",
+        "color": "Color theme",
+        "error": "Could not save the name",
+        "saved": "Your name has been saved and will appear next time you open the app.",
+        "habitSelector": "Choose habits to track"
     }
 }
