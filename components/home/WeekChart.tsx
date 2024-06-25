@@ -5,8 +5,6 @@ import { Colors } from '@/constants/Colors';
 import { ThemedText } from '../ThemedText';
 import { IconReload } from '@tabler/icons-react-native';
 import { useLanguage } from '@/hooks/useLanguage';
-import useColorStore from '@/store';
-
 
 interface Props {
     isLoading: boolean;
@@ -57,6 +55,8 @@ export const WeekChart = ({
                     width={Dimensions.get('window').width} 
                     height={220}
                     yAxisInterval={8} 
+                    fromZero
+                    bezier
                     chartConfig={{
                         backgroundGradientFromOpacity: 0,
                         backgroundGradientToOpacity: 0,

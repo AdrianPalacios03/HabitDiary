@@ -12,8 +12,8 @@
 
 You can download the app from the following links:
 
-- **[Google Play Store](https://)** 
-- **[App Store]()**
+<!-- - **[Google Play Store](https://apps.apple.com/us/app/habit-diary/id6504735205/)**  -->
+- **[App Store](https://apps.apple.com/us/app/habit-diary/id6504735205/)**
 
 
 ## Features
@@ -23,6 +23,17 @@ You can download the app from the following links:
 - **Progress History**: Check your progress history and stay motivated.
 
 ![Task Management Screenshot](./assets/images/readme-features.png)
+
+## News
+
+Feel free to contribute to this project by picking up any of the following tasks:
+
+- [x] Add an option to change the primary color of the app
+- [x] Add the possibility to import and export user data
+- [x] Add a new screen to display all user notes
+- [x] Add a new screen to display all user days
+- [x] Add the possibility to add user's name
+- [x] Make possible adding and removing habits from the list
 
 ---
 
@@ -76,15 +87,3 @@ Contributions are always welcome! Please follow the following steps:
 3. Make the necessary changes and **commit** your changes (`git commit -am 'Add new functionality'`).
 4. **Upload** your changes (`git push origin feature/new-functionality`).
 5. Open a **pull request**.
-
-
-## TODO
-
-Feel free to contribute to this project by picking up any of the following tasks:
-
-- [x] Add an option to change the primary color of the app
-- [ ] Add the possibility to import and export user data
-- [ ] Add a new screen to display all user notes
-- [ ] Add a new screen to display all user days
-- [x] Add the possibility to add user's name
-- [x] Make possible adding and removing habits from the list

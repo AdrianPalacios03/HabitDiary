@@ -38,7 +38,7 @@ const HomeScreen = () => {
     
     return (
         <GestureHandlerRootView style={{...StyleSheet.absoluteFillObject}}>
-            <StatusBar style="auto" backgroundColor={Colors[colorScheme ?? 'light'].background}/>
+            <StatusBar style="auto" backgroundColor={Colors[colorScheme ?? 'light'].background} translucent/>
 
             <ScrollView
                 keyboardShouldPersistTaps='handled'
@@ -63,12 +63,7 @@ const HomeScreen = () => {
                     />
                     <Phrase/>
 
-                    <View style={{
-                        marginTop:20,
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        gap: 20
-                    }}>
+                    <View style={styles.buttonsContainer}>
                         <Button text={lan.home.progress} url='/Progress' color={textColor}>
                             <IconRocket size={30} color={textColor}/>
                         </Button>
@@ -100,6 +95,12 @@ const styles = StyleSheet.create({
     },
     title: {
         marginVertical: 40
+    },
+    buttonsContainer: {
+        marginTop:20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: 20
     }
 
 })

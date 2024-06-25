@@ -35,6 +35,18 @@ export const en = {
         "color": "Color theme",
         "error": "Could not save the name",
         "saved": "Your name has been saved and will appear next time you open the app.",
-        "habitSelector": "Choose habits to track"
+        "habitSelector": "Choose habits to track",
+        "export": "Export data",
+        "import": "Import data",
+        "tutorialExport": "To export your data, press the following button, a text string will be copied to the clipboard. Send that string to your other device.",
+        "tutorialImport": "To import your data, paste the text string in the following field and press the import button.",
+        "importAlert": "If you import data, all your current data will be lost.",
+        "importAlert2": "If you paste a non-valid string, the app will crash and you will have to reinstall it.",
+        "errorText": "Please enter a valid text.",
+        "imported": "Data imported successfully",
+        "exported": "Data copied to clipboard",
+        "errorImported": "Error importing data",
+        "errorExported": "Error exporting data",
+        "loading": "Loading...",
     }
 }

@@ -1,11 +1,13 @@
+import BackButton from '@/components/BackButton';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import Button from '@/components/home/Button';
 import ColorSelector from '@/components/settings/ColorSelector';
 import { Colors } from '@/constants/Colors';
 import { useLanguage } from '@/hooks/useLanguage';
 import useColorStore from '@/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IconArrowNarrowLeft, IconArrowRight, IconDeviceFloppy } from '@tabler/icons-react-native';
+import { IconArrowNarrowLeft, IconArrowRight, IconDatabaseExport, IconDatabaseImport, IconDeviceFloppy, IconList } from '@tabler/icons-react-native';
 import { Link, router } from 'expo-router';
 import React, { useEffect, useState } from 'react'
 import { Alert, Pressable, StyleSheet, TextInput, View, useColorScheme } from 'react-native'
@@ -18,6 +20,7 @@ const SettingsPage = () => {
     const { lan } = useLanguage();
     const colorScheme = useColorScheme();
     const color = useColorStore((state) => state.color);
+    const textColor = Colors[colorScheme ?? 'light'].text;
 
     const [nameValue, setNameValue] = useState("");
 
@@ -50,38 +53,40 @@ const SettingsPage = () => {
     return (
         <GestureHandlerRootView>
             <ThemedView style={{...StyleSheet.absoluteFillObject, paddingTop, ...styles.container}}>
-                <Pressable onPress={() => router.back()} style={styles.back}>
-                    <IconArrowNarrowLeft size={30} color={Colors[colorScheme ?? 'light'].text}/>
-                    <ThemedText type='subtitle'>{lan.settings.back}</ThemedText>
-                </Pressable>
+                <BackButton
+                    color={textColor}
+                    text={lan.settings.back}
+                />
             
                 <ThemedText type='title'>{lan.settings.title}</ThemedText>
                 <ThemedText type='subtitle' style={styles.subtitle}>{lan.settings.name}</ThemedText>
                 <View style={styles.nameInput}>
                     <TextInput
-                        style={{...styles.input, color: Colors[colorScheme ?? 'light'].text}}
+                        style={{...styles.input, color: textColor}}
                         placeholder={lan.settings.name}
-                        placeholderTextColor={Colors[colorScheme ?? 'light'].text}
+                        placeholderTextColor={textColor}
                         value={nameValue}
                         onChangeText={setNameValue}
                     />
                     <Pressable onPress={onNameSave}>
-                        <IconDeviceFloppy size={30} color={Colors[colorScheme ?? 'light'].text}/>
+                        <IconDeviceFloppy size={30} color={textColor}/>
                     </Pressable>
                 </View>
                 <ThemedText type='subtitle' style={styles.subtitle}>{lan.settings.color}</ThemedText>
                 
                 <ColorSelector/>
 
-                <Link href='/HabitSelector' style={{marginVertical:30, width: '100%'
-                }}>
-                    <View style={{...styles.habitsButton, borderColor: color}}>
-                        <ThemedText type='subtitle'>
-                            {lan.settings.habitSelector}
-                        </ThemedText>
-                        <IconArrowRight size={30} color={Colors[colorScheme ?? 'light'].text}/>
-                    </View>
-                </Link>
+                <View style={styles.buttonsContainer}>
+                    <Button text={lan.settings.export} url='/Export' color={textColor}>
+                        <IconDatabaseExport size={20} color={textColor}/>
+                    </Button>
+                    <Button text={lan.settings.import} url='/Import' color={textColor}>
+                        <IconDatabaseImport size={20} color={textColor}/>
+                    </Button>
+                    <Button text={lan.settings.habitSelector} url='/HabitSelector' color={textColor}>
+                        <IconList size={20} color={textColor}/>
+                    </Button>
+                </View>
             </ThemedView>
         </GestureHandlerRootView>
     )
@@ -118,14 +123,11 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 16
     },
-    habitsButton: {
-        marginTop: 20,
-        borderWidth: 1,
+    buttonsContainer: {
+        marginTop: 40,
         flexDirection: 'row',
-        padding: 10,
-        borderRadius: 10,    
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
+        justifyContent: 'center',
+        gap: 20,
+        flexWrap: 'wrap'
+    }
 })

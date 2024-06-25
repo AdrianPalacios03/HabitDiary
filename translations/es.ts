@@ -35,6 +35,18 @@ export const es = {
         "color": "Color principal",
         "error": "No se pudo guardar el nombre",
         "saved": "Tu nombre ha sido guardado y aparecerá la próxima vez que abras la app.",
-        "habitSelector": "Elige los hábitos a seguir"
+        "habitSelector": "Elige los hábitos a seguir",
+        "export": "Exportar datos",
+        "import": "Importar datos",
+        "tutorialExport": "Para exportar tus datos, presiona el siguiente botón, una cadena de texto se copiará al portapapeles. Envía esa cadena a tu otro dispositivo.",
+        "tutorialImport": "Para importar tus datos, pega la cadena de texto en el siguiente campo y presiona el botón de importar.",
+        "importAlert": "Si importas datos, todos tus datos actuales se perderán.",
+        "importAlert2": "Si pegas una cadena no válida, la app se cerrará y tendrás que reinstalarla.",
+        "errorText": "Por favor, ingresa un texto válido.",
+        "imported": "Datos importados correctamente",
+        "exported": "Datos copiados al portapapeles",
+        "errorImported": "Error al importar los datos",
+        "errorExported": "Error al exportar los datos",
+        "loading": "Cargando...",
     }
 }
