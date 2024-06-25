@@ -48,5 +48,6 @@ export const en = {
         "errorImported": "Error importing data",
         "errorExported": "Error exporting data",
         "loading": "Loading...",
+        "paste": "Paste the text here",
     }
 }

@@ -48,5 +48,6 @@ export const es = {
         "errorImported": "Error al importar los datos",
         "errorExported": "Error al exportar los datos",
         "loading": "Cargando...",
+        "paste": "Pega el texto aquí",
     }
 }

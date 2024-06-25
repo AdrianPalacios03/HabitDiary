@@ -17,7 +17,12 @@ const Import = () => {
 
     const onImportPress = async() => {
         setIsLoading(true);
-        if (fieldValue.length === 0) return Alert.alert('Error', lan.settings.errorText);
+        
+        if (fieldValue.length === 0)  {
+            Alert.alert('Error', lan.settings.errorText);   
+            setIsLoading(false);
+            return;
+        }
 
         try {
             const data = JSON.parse(fieldValue);
@@ -55,7 +60,7 @@ const Import = () => {
             <TextInput
                 style={{backgroundColor: theme.grey, color: theme.background, padding: 10, borderRadius: 5, marginTop: 20}}
                 placeholderTextColor={theme.background}
-                placeholder="Paste the text here"
+                placeholder={lan.settings.paste}
                 value={fieldValue}
                 onChangeText={setFieldValue}
             />
