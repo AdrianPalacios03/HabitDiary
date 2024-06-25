@@ -26,8 +26,6 @@ You can download the app from the following links:
 
 ## News
 
-Feel free to contribute to this project by picking up any of the following tasks:
-
 - [x] Add an option to change the primary color of the app
 - [x] Add the possibility to import and export user data
 - [x] Add a new screen to display all user notes
