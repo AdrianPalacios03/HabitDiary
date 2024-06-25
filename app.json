@@ -21,7 +21,10 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#9568e3"
       },
-      "package": "com.palacios.habitdiary"
+      "package": "com.palacios.habitdiary",
+      "version": "2.0",
+      "appVersion": "2.0",
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro",
