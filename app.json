@@ -2,7 +2,7 @@
   "expo": {
     "name": "HabitDiary",
     "slug": "HabitDiary",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -42,6 +42,12 @@
       "eas": {
         "projectId": "1aabf7db-f9ca-483c-b030-367cbc7d1876"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1aabf7db-f9ca-483c-b030-367cbc7d1876"
     }
   }
 }
