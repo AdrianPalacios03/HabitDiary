@@ -12,8 +12,8 @@
 
 You can download the app from the following links:
 
-<!-- - **[Google Play Store](https://apps.apple.com/us/app/habit-diary/id6504735205/)**  -->
 - **[App Store](https://apps.apple.com/us/app/habit-diary/id6504735205/)**
+- **[Google Play Store](https://play.google.com/store/apps/details?id=com.palacios.habitdiary)** 
 
 
 ## Features
