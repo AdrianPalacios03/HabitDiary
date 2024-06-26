@@ -2,7 +2,7 @@
   "expo": {
     "name": "HabitDiary",
     "slug": "HabitDiary",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -22,9 +22,9 @@
         "backgroundColor": "#9568e3"
       },
       "package": "com.palacios.habitdiary",
-      "version": "2.0",
-      "appVersion": "2.0",
-      "versionCode": 2
+      "version": "2.3",
+      "appVersion": "2.3",
+      "versionCode": 3
     },
     "web": {
       "bundler": "metro",
