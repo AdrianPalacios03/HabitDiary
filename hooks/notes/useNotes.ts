@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
-interface Note {
+export interface Note {
     date: string;
     feeling: string;
     originalDate: Date;

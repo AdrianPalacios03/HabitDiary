@@ -49,5 +49,8 @@ export const es = {
         "errorExported": "Error al exportar los datos",
         "loading": "Cargando...",
         "paste": "Pega el texto aquí",
-    }
+    },
+    "notes": {
+        "empty": "Aún no has añadido ninguna nota.",
+    },
 }
